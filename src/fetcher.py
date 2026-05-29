@@ -29,16 +29,11 @@ def get_top_stocks_close(num_stocks=20):
     selected_tickers = TOP_TICKERS[:num_stocks]
     results = []
     
-    # INTENTIONAL FLAW: This downloads one by one, which is slow.
-    # An agent should probably optimize this to use yf.download(threads=True)
     for symbol in selected_tickers:
         try:
             ticker = yf.Ticker(symbol)
-            # Getting the last 2 days to ensure we get yesterday's close
             hist = ticker.history(period="2d")
             
-            # INTENTIONAL BUG: If it's Monday, "yesterday" (Sunday) has no data.
-            # This will raise an IndexError on the weekend/Mondays.
             yesterday_close = hist['Close'].iloc[-2] 
             
             results.append({

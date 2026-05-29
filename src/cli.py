@@ -30,9 +30,7 @@ def run_cli():
             timeframe = input("Enter timeframe (1d, 5d, 1mo, 1y): ")
             print(f"Fetching {timeframe} data for {ticker}...")
             # TODO: The output of this is messy because it's a raw pandas dataframe 
-            # with lots of columns. An agent should be asked to clean this up.
             df = get_historical_data(ticker, timeframe)
-            # Reset index to make date a column for cleaner printing
             if not df.empty:
                 df = df.reset_index()
             display_dataframe(df)

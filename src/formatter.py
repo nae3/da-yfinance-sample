@@ -13,4 +13,3 @@ def display_dataframe(df):
     print("="*40 + "\n")
 
 # TODO: Implement export_to_csv(df, filename) function here
-# The CLI menu has an option for it, but the function doesn't exist yet!
